@@ -2,7 +2,7 @@
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:text_x_brain
+    url: jdbc:h2:mem:test_x_brain
     username: sa
     password:
   h2:
@@ -10,3 +10,6 @@ spring:
       enabled: true
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+# API config
+api:
+  prefix: /api/v1
