@@ -1,6 +1,7 @@
 package com.eugeniojava.testxbrain.service.impl;
 
 import com.eugeniojava.testxbrain.controller.request.SellerRequest;
+import com.eugeniojava.testxbrain.controller.response.SellerReportResponse;
 import com.eugeniojava.testxbrain.controller.response.SellerResponse;
 import com.eugeniojava.testxbrain.model.Seller;
 import com.eugeniojava.testxbrain.repository.SellerRepository;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -74,5 +76,17 @@ public class SellerServiceImpl implements SellerService {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @Override
+    public ResponseEntity<List<SellerReportResponse>> getSellersReportBetween(
+            LocalDate startDate, LocalDate endDate) {
+        List<SellerReportResponse> sellerReportResponses =
+                sellerRepository.getSellersReportBetween(startDate, endDate);
+
+        if (!sellerReportResponses.isEmpty()) {
+            return new ResponseEntity<>(sellerReportResponses, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

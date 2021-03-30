@@ -1,12 +1,15 @@
 package com.eugeniojava.testxbrain.controller;
 
 import com.eugeniojava.testxbrain.controller.request.SellerRequest;
+import com.eugeniojava.testxbrain.controller.response.SellerReportResponse;
 import com.eugeniojava.testxbrain.controller.response.SellerResponse;
 import com.eugeniojava.testxbrain.service.SellerService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -45,5 +48,14 @@ public class SellerController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         return sellerService.delete(id);
+    }
+
+    @GetMapping("/reportBetween")
+    public ResponseEntity<List<SellerReportResponse>> getSellersReportBetween(
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")
+                    LocalDate startDate,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")
+                    LocalDate endDate) {
+        return sellerService.getSellersReportBetween(startDate, endDate);
     }
 }

@@ -1,7 +1,6 @@
 package com.eugeniojava.testxbrain.controller.response;
 
 import com.eugeniojava.testxbrain.model.Sale;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

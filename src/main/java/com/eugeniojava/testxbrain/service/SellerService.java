@@ -1,9 +1,11 @@
 package com.eugeniojava.testxbrain.service;
 
 import com.eugeniojava.testxbrain.controller.request.SellerRequest;
+import com.eugeniojava.testxbrain.controller.response.SellerReportResponse;
 import com.eugeniojava.testxbrain.controller.response.SellerResponse;
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface SellerService {
@@ -17,4 +19,7 @@ public interface SellerService {
     ResponseEntity<SellerResponse> update(Long id, SellerRequest sellerRequest);
 
     ResponseEntity<?> delete(Long id);
+
+    ResponseEntity<List<SellerReportResponse>> getSellersReportBetween(
+            LocalDate startDate, LocalDate endDate);
 }
